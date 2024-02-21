@@ -1,7 +1,16 @@
 import * as React from "react"
 import Layout from '../components/layout'
 import Slide_v1 from '../images/Slide_v1.jpg';
-import SectionLayout from "../components/section-layout";
+import WhatWeDoTile from "../components/what-we-do-tile";
+import {
+  faHouse,
+  faRulerCombined,
+  faHammer,
+  faHouseChimneyCrack,
+  faLandmarkDome,
+  faHouseChimneyWindow
+} from '@fortawesome/free-solid-svg-icons'
+
 const IndexPage = () => {
   return (
     <Layout>
@@ -33,8 +42,19 @@ const WhatWeDoSection = () => {
       <div className="px-5 py-16 flex flex-col gap-4">
         <span className="text-yellow-600 font-bold text-sm">– OUR SERVICES</span>
         <h2 className="text-4xl font-extrabold">What We Do</h2>
+
         <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</span>
+
+        <ul className="container grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-6">
+          <WhatWeDoTile title="Roof\nInstalation" icon={faHouse}/>
+          <WhatWeDoTile title="Historical\nBuildings" icon={faLandmarkDome}/>
+          <WhatWeDoTile title="Pose\nVelux" icon={faHouseChimneyWindow}/>
+          <WhatWeDoTile title="Roof\nFrame Design" icon={faRulerCombined}/>
+          <WhatWeDoTile title="Roof\nLayer Fixing" icon={faHammer}/>
+          <WhatWeDoTile title="Roof\nDamage Repair" icon={faHouseChimneyCrack}/>
+      </ul>
       </div>
+      
     </div>
     </section>
   )
