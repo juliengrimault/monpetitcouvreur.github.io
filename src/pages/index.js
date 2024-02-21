@@ -40,7 +40,7 @@ const WhatWeDoSection = () => {
 
           <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</span>
 
-          <ul className="container grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-6">
+          <ul className="container grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-6">
             <WhatWeDoTile title="Roof\nInstalation" icon={mdiHomeOutline}/>
             <WhatWeDoTile title="Historical\nBuildings" icon={mdiChessRook}/>
             <WhatWeDoTile title="Pose\nVelux" icon={mdiWindowClosedVariant}/>
