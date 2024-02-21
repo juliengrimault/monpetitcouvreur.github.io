@@ -2,14 +2,7 @@ import * as React from "react"
 import Layout from '../components/layout'
 import Slide_v1 from '../images/Slide_v1.jpg';
 import WhatWeDoTile from "../components/what-we-do-tile";
-import {
-  faHouse,
-  faRulerCombined,
-  faHammer,
-  faHouseChimneyCrack,
-  faLandmarkDome,
-  faHouseChimneyWindow
-} from '@fortawesome/free-solid-svg-icons'
+import { mdiHomeRoof, mdiHomeOutline, mdiChessRook, mdiWindowClosedVariant, mdiRulerSquare, mdiHammer } from '@mdi/js';
 
 const IndexPage = () => {
   return (
@@ -46,12 +39,12 @@ const WhatWeDoSection = () => {
         <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</span>
 
         <ul className="container grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-6">
-          <WhatWeDoTile title="Roof\nInstalation" icon={faHouse}/>
-          <WhatWeDoTile title="Historical\nBuildings" icon={faLandmarkDome}/>
-          <WhatWeDoTile title="Pose\nVelux" icon={faHouseChimneyWindow}/>
-          <WhatWeDoTile title="Roof\nFrame Design" icon={faRulerCombined}/>
-          <WhatWeDoTile title="Roof\nLayer Fixing" icon={faHammer}/>
-          <WhatWeDoTile title="Roof\nDamage Repair" icon={faHouseChimneyCrack}/>
+          <WhatWeDoTile title="Roof\nInstalation" icon={mdiHomeOutline}/>
+          <WhatWeDoTile title="Historical\nBuildings" icon={mdiChessRook}/>
+          <WhatWeDoTile title="Pose\nVelux" icon={mdiWindowClosedVariant}/>
+          <WhatWeDoTile title="Roof\nFrame Design" icon={mdiRulerSquare}/>
+          <WhatWeDoTile title="Roof\nLayer Fixing" icon={mdiHammer}/>
+          <WhatWeDoTile title="Roof\nDamage Repair" icon={mdiHomeRoof}/>
       </ul>
       </div>
       
