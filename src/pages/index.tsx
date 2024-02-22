@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Layout from '../components/layout'
 import Slide_v1 from '../images/Slide_v1.jpg';
 import WhatWeDoSection from '../components/WhatWeDoSection'

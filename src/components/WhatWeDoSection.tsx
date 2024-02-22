@@ -8,7 +8,20 @@ import Service_5 from '../images/Service-5.jpg';
 import Service_6 from '../images/Service-6.jpg';
 import { mdiHomeRoof, mdiHomeOutline, mdiChessRook, mdiWindowClosedVariant, mdiRulerSquare, mdiHammer } from '@mdi/js';
 
-const sections = [
+interface Section {
+  id: string
+  title: string
+  icon: string
+  details: SectionDetails
+}
+
+interface SectionDetails {
+  title: string
+  content: string
+  image: string
+}
+
+const sections: Section[] = [
     {
       id: "com.mpc.wwd.1",
       title: "Roof\nInstalation",
@@ -69,94 +82,92 @@ const sections = [
           image: Service_6
       }
   }
-  ]
+]
   
+const WhatWeDoSection = () => {
+  const [selectedSection, setSelectedSection] = useState(sections[0])
   
-  const WhatWeDoSection = () => {
-    const [selectedSection, setSelectedSection] = useState(sections[0])
-    
-    return (
-      <section className="bg-slate-800 text-gray-100">
-        <div className="container mx-auto">
-          <div className="px-5 py-16 flex flex-col gap-4">
-            <span className="text-yellow-600 font-bold text-sm">– OUR SERVICES</span>
-            <h2 className="text-4xl font-extrabold">What We Do</h2>
-  
-            <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</span>
-  
-            <ul className="container grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-6">
-              {
-                sections.map((s) => {
-                  return <WhatWeDoTile
-                    key={ s.id }
-                    title={ s.title }
-                    icon={ s.icon }
-                    onClick={ ()=> { setSelectedSection(s) } }
-                    isSelected={ s === selectedSection }
-                  />
-                })
-              }
-          </ul>
-  
-          {
-              selectedSection ? 
-              <WhatWeDoDetails 
-                title={ selectedSection.details.title }
-                details={ selectedSection.details.content }
-                image={ selectedSection.details.image }
-              />
-              :
-               null
-          }
-          </div>
-          
+  return (
+    <section className="bg-slate-800 text-gray-100">
+      <div className="container mx-auto">
+        <div className="px-5 py-16 flex flex-col gap-4">
+          <span className="text-yellow-600 font-bold text-sm">– OUR SERVICES</span>
+          <h2 className="text-4xl font-extrabold">What We Do</h2>
+
+          <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</span>
+
+          <ul className="container grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-6">
+            {
+              sections.map((s) => {
+                return <Tile
+                  key={ s.id }
+                  section={s}
+                  onClick={ ()=> { setSelectedSection(s) } }
+                  isSelected={ s === selectedSection }
+                />
+              })
+            }
+        </ul>
+
+        {
+            selectedSection ? 
+            <Details {...selectedSection.details } />
+            :
+              null
+        }
         </div>
-      </section>
-    )
-  }
-
-
-const WhatWeDoTile = ({ title, icon, onClick, isSelected = false }) => {
-    const lines = title.split('\\n');
-   
-    return (
-      <button onClick={onClick} className={`
-      ${isSelected ? 'bg-yellow-600' : 'bg-gray-100'} ${ isSelected ? 'text-gray-100' : 'text-black'}
-      flex flex-col items-center
-      rounded-lg
-      py-3 px-5 gap-3 
-      md:py-8 md:gap-5
-      hover:bg-yellow-600 hover:text-gray-100
-      transition duration-300
-      `}>
-          <Icon path={icon} size='5rem' />
-          <h3 className='text-xl font-bold text-center'>
-              {
-                  lines.map((line, index) => (
-                      <React.Fragment key={index}>
-                          {line}
-                          <br />
-                      </React.Fragment>
-                  ))
-              }
-          </h3>
-      </button>
-    )
-  }
-
-const WhatWeDoDetails = ({ title, details, image }) => {
-    console.log(image)
-    return (
-      <div className='container bg-gray-100 text-black rounded-lg pt-10 pb-5 px-5 gap-5 flex flex-col lg:flex-row lg:gap-8 lg:px-8'>
-          <div className='flex flex-col gap-3'>
-              <h2 className='text-3xl font-bold'>{title}</h2>
-              <p className='text-lg text-gray-700'>{details}</p>
-          </div>
-          <div className='flex flex-col-reverse' >
-            <img className='rounded-lg lg:max-w-60' src={image} alt=''/>
-          </div>
+        
       </div>
-    )
-  }
+    </section>
+  )
+}
 
-  export default WhatWeDoSection
+interface TileProps {
+  section: Section
+  onClick: () => void
+  isSelected: boolean
+}
+
+const Tile = ({ section, onClick, isSelected = false }: TileProps) => {
+  const lines = section.title.split('\\n');
+  
+  return (
+    <button onClick={onClick} className={`
+    ${isSelected ? 'bg-yellow-600' : 'bg-gray-100'} ${ isSelected ? 'text-gray-100' : 'text-black'}
+    flex flex-col items-center
+    rounded-lg
+    py-3 px-5 gap-3 
+    md:py-8 md:gap-5
+    hover:bg-yellow-600 hover:text-gray-100
+    transition duration-300
+    `}>
+        <Icon path={section.icon} size='5rem' />
+        <h3 className='text-xl font-bold text-center'>
+            {
+                lines.map((line, index) => (
+                    <React.Fragment key={index}>
+                        {line}
+                        <br />
+                    </React.Fragment>
+                ))
+            }
+        </h3>
+    </button>
+  )
+}
+
+const Details = (props: SectionDetails) => {
+  return (
+    <div className='container bg-gray-100 text-black rounded-lg pt-10 pb-5 px-5 gap-5 flex flex-col lg:flex-row lg:gap-8 lg:px-8'>
+        <div className='flex flex-col gap-3'>
+            <h2 className='text-3xl font-bold'>{props.title}</h2>
+            <p className='text-lg text-gray-700'>{props.content}</p>
+        </div>
+        <div className='flex flex-col-reverse' >
+          <img className='rounded-lg lg:max-w-60' src={props.image} alt=''/>
+        </div>
+    </div>
+  )
+}
+
+export default WhatWeDoSection
