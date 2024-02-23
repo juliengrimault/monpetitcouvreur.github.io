@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { StaticImage } from "gatsby-plugin-image"
 import { Link } from 'gatsby'
+import logo from '../images/logo-80.png'
 
 const Header = () => {
   return (
     <header className='bg-slate-800 text-gray-100'>
       <div className='container mx-auto p-5 flex flex-col items-center gap-3 md:flex-row'>
         <Link className='flex title-font flex-row items-center gap-3' to="/">
-          <StaticImage src="../images/logo-80.png" alt="Logo Mon Petit Couvreur" />
+          <img src={logo} alt="Logo Mon Petit Couvreur" />
           <h1 className='text-2xl font-bold'>Mon Petit Couvreur</h1>
         </Link>
         
