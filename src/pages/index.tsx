@@ -1,13 +1,15 @@
 import React from "react"
 import Layout from '../components/layout'
 import Slide_v1 from '../images/Slide_v1.jpg';
-import WhatWeDoSection from '../components/WhatWeDoSection'
+import WhatWeDoSection from '../components/what-we-do-section'
+import WhyChooseUsSection from '../components/why-choose-us-section'
 
 const IndexPage = () => {
   return (
     <Layout>
       <HeroSection />
       <WhatWeDoSection />
+      <WhyChooseUsSection />
     </Layout>
   )
 }

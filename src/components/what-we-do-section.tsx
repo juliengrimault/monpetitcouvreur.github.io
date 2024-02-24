@@ -8,6 +8,7 @@ import Service_4 from '../images/Service-4.jpg';
 import Service_5 from '../images/Service-5.jpg';
 import Service_6 from '../images/Service-6.jpg';
 import BgImage from '../images/what_we_do_section_bg.jpg'
+import SectionLayout from './section-layout';
 import { mdiHomeRoof, mdiHomeOutline, mdiChessRook, mdiWindowClosedVariant, mdiRulerSquare, mdiHammer } from '@mdi/js';
 
 interface Section {
@@ -90,15 +91,13 @@ const WhatWeDoSection = () => {
   const [selectedSection, setSelectedSection] = useState(sections[0])
   
   return (
-    <section className="relative bg-slate-800 text-gray-100">
-      <div className="container mx-auto">
-        <div className="px-5 py-16 flex flex-col gap-4">
-          <span className="text-yellow-600 font-bold text-sm">– OUR SERVICES</span>
-          <h2 className="text-4xl font-extrabold">What We Do</h2>
-
-          <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</span>
-
-          <ul className="container grid grid-cols-2 gap-6 pt-5 pb-7 md:grid-cols-3 lg:grid-cols-6">
+    <section className="relative bg-slate-800 text-gray-100 -z-20">
+      <SectionLayout
+        title='What We Do'
+        subtitle='– OUR SERVICES'
+        details='Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.'
+      >
+         <ul className="grid grid-cols-2 gap-6 pt-5 pb-7 md:grid-cols-3 lg:grid-cols-6">
             {
               sections.map((s) => {
                 return <Tile
@@ -112,11 +111,11 @@ const WhatWeDoSection = () => {
         </ul>
 
         <Details id={ selectedSection.id } details={ selectedSection.details } />
-        </div>
-      </div>
+      </SectionLayout>
+      
       <motion.img 
         src={BgImage}
-        className='absolute bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-15'
+        className='absolute max-w-[100%] -z-10 bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-15'
         initial={{ x: "100%" }}
         whileInView={{ x: 0 }}
         viewport={{ once: true }}
@@ -173,7 +172,7 @@ const Details = (props: DetailsProps) => {
   return (
     <motion.div
       key={props.id}
-      className='container bg-gray-100 text-black rounded-lg pt-10 pb-5 px-5 gap-5 flex flex-col lg:flex-row lg:gap-8 lg:px-8'
+      className='bg-gray-100 text-black rounded-lg pt-10 pb-5 px-5 gap-5 flex flex-col lg:flex-row lg:gap-8 lg:px-8'
       initial={{ scaleY: 0.9 }}
       animate={{ scaleY: 1.0 }}
       transition={{ duration: 0.3 }}
