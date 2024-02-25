@@ -3,6 +3,7 @@ import Layout from '../components/layout'
 import Slide_v1 from '../images/Slide_v1.jpg';
 import WhatWeDoSection from '../components/what-we-do-section'
 import WhyChooseUsSection from '../components/why-choose-us-section'
+import TestimonySection from "../components/testimony-section";
 
 const IndexPage = () => {
   return (
@@ -10,6 +11,7 @@ const IndexPage = () => {
       <HeroSection />
       <WhatWeDoSection />
       <WhyChooseUsSection />
+      <TestimonySection />
     </Layout>
   )
 }

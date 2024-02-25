@@ -38,6 +38,7 @@ const WhyChooseUsSection = () => {
           title='Why Main Reason to Choose Us'
           subtitle='– WHAT REASON TO CHOOSE US'
           details='Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.'
+          detailsClassName='text-slate-700'
         >
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-5 pb-7">
             {
