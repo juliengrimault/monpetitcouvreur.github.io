@@ -5,7 +5,6 @@ import SectionLayout from './section-layout';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from './testimony.module.css'
 
 const TestimonySection = () => {
     const settings = {
@@ -38,7 +37,7 @@ const TestimonySection = () => {
         >
             <Slider {...settings}>
             {
-                testimonies.map((t) => <TestimonyTile {...t} />)
+                testimonies.map((t, idx) => <TestimonyTile key={idx} {...t} />)
             }
             </Slider>
         </SectionLayout>
