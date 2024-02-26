@@ -1,6 +1,6 @@
 import Icon from '@mdi/react';
-import { motion } from "framer-motion";
-import React, { useState } from "react"
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import React, { useRef } from "react"
 import BgImage from '../images/why_choose_us_bg.png'
 import { mdiCrowd, mdiMagnify, mdiAccountHardHatOutline, mdiSealVariant } from '@mdi/js';
 import SectionLayout from './section-layout';
@@ -29,9 +29,22 @@ const reasons: Reason[] = [
   },
 ]
 
+function useParallax(value: MotionValue<number>, distance: number) {
+  return useTransform(value, [0,1], [-distance, distance]);
+}
+
 const WhyChooseUsSection = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ 
+    target: ref,
+    // starts to increase when the top of the `ref` is at the bottom of the viewport
+    // reaching 1.0 when the top of the section is at the top of the viewport
+    offset: ['start end', 'start start']
+  });
+  const y = useParallax(scrollYProgress, 20)
+
   return (
-    <section className="relative bg-slate-200 -z-20">
+    <section ref={ref} className="relative bg-slate-200 -z-20">
       <div className='container mx-auto flex flex-row max-w-6xl'>
         <div className='w-0 lg:w-2/5'></div>
         <SectionLayout
@@ -52,10 +65,11 @@ const WhyChooseUsSection = () => {
           </ul>
         </SectionLayout>
       </div>
-
+ 
       <motion.img
         src={BgImage}
-        className='absolute max-w-[100%] -z-10 bottom-0 start-0 object-left-bottom opacity-15 lg:opacity-100'
+        className='absolute max-w-[100%] -z-10 -bottom-20 start-0 object-left-bottom opacity-15 lg:opacity-100'
+        style={{ y }}
         initial={{ x: "-100%" }}
         whileInView={{ x: 0 }}
         viewport={{ once: true }}
