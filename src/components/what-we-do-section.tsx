@@ -91,7 +91,7 @@ const WhatWeDoSection = () => {
   const [selectedSection, setSelectedSection] = useState(sections[0])
   
   return (
-    <section className="relative bg-slate-800 text-gray-100 -z-20">
+    <section className="relative bg-slate-800 text-gray-100 z-0">
       <SectionLayout
         title='What We Do'
         subtitle='– OUR SERVICES'
@@ -110,12 +110,12 @@ const WhatWeDoSection = () => {
             }
         </ul>
 
-        <Details id={ selectedSection.id } details={ selectedSection.details } />
+        <Details id={selectedSection.id} {...selectedSection.details } />
       </SectionLayout>
       
       <motion.img 
         src={BgImage}
-        className='absolute max-w-[100%] -z-10 bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-15'
+        className='absolute max-w-[100%] z-10 bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-15'
         initial={{ x: "100%" }}
         whileInView={{ x: 0 }}
         viewport={{ once: true }}
@@ -164,9 +164,8 @@ const Tile = ({ section, onClick, isSelected = false }: TileProps) => {
   )
 }
 
-interface DetailsProps {
+interface DetailsProps extends SectionDetails {
   id: string
-  details: SectionDetails
 }
 const Details = (props: DetailsProps) => {
   return (
@@ -178,11 +177,11 @@ const Details = (props: DetailsProps) => {
       transition={{ duration: 0.3 }}
     >
         <div className='flex flex-col gap-3'>
-            <h2 className='text-3xl font-bold'>{props.details.title}</h2>
-            <p className='text-lg text-gray-700'>{props.details.content}</p>
+            <h2 className='text-3xl font-bold'>{props.title}</h2>
+            <p className='text-lg text-gray-700'>{props.content}</p>
         </div>
         <div className='flex flex-col-reverse' >
-          <img className='rounded-lg lg:max-w-60' src={props.details.image} alt=''/>
+          <img className='rounded-lg lg:max-w-60' src={props.image} alt=''/>
         </div>
     </motion.div>
   )

@@ -1,14 +1,16 @@
 import Icon from '@mdi/react';
 import { mdiFormatQuoteOpenOutline } from '@mdi/js';
-import React from "react"
-import SectionLayout from './section-layout';
+import React, { useRef } from "react"
+import SectionLayout, { CenteredSection, SectionHeader} from './section-layout';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { title } from 'process';
 
 const TestimonySection = () => {
+    const ref = useRef(null)
     const settings = {
-        className: "pt-10 pb-15",
+        className: "w-8/12",
         dots: false,
         infinite: true,
         slidesToShow: 2,
@@ -29,20 +31,45 @@ const TestimonySection = () => {
           ]
       };
 
+
+    
   return (
     <section className="bg-slate-800 text-gray-100">
-        <SectionLayout
-          title="What they're saying about us"
-          subtitle='– TESTIMONIALS'
-        >
-            <Slider {...settings}>
-            {
-                testimonies.map((t, idx) => <TestimonyTile key={idx} {...t} />)
-            }
-            </Slider>
-        </SectionLayout>
+         <CenteredSection>
+            <div className='flex flex-row align-top'>
+                <div className='basis-4/12'>
+                    <SectionHeader title="What they're saying about us" subtitle='– TESTIMONIALS'>
+                        <div className='flex flex-row gap-8 pt-5'>
+                            <Button text='&larr;' onClick={ () => { console.log("test"); ref.current?.slickPrev() }  } />
+                            <Button text='&rarr;' onClick={ () => ref.current?.slickNext() } />
+                        </div>
+                    </SectionHeader>
+                </div>
+                <Slider ref={ ref } {...settings}>
+                {
+                    testimonies.map((t, idx) => <TestimonyTile key={idx} {...t} />)
+                }
+                </Slider>
+            </div>
+         </CenteredSection>       
     </section>
   )
+}
+
+interface ButtonProps {
+    text: string;
+    onClick: () => void;
+}
+
+const Button = (props: ButtonProps) => {
+    return (
+        <button className='
+            w-[50px] h-[50px] ring-1 ring-inset ring-slate-300 text-slate-300 rounded-full text-4xl
+            hover:bg-yellow-600 transition duration-300'
+            onClick={props.onClick}>
+            {props.text}
+        </button>
+    )
 }
 
 const testimonies: Testimony[] = [
@@ -52,7 +79,7 @@ const testimonies: Testimony[] = [
     },
     {
         name: 'Marise Duval',
-        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id faucibus nisl tincidunt eget nullam non nisi.'
+        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore '
     },
     {
         name: 'Pierre Dupont',
@@ -68,7 +95,7 @@ interface Testimony {
 const TestimonyTile = (props: Testimony) => {
     return (
         // this works in conjuction with the globall.css where we style the react-slick slider's div
-        <div className='bg-gray-100 pt-5 pb-10 px-10 rounded-lg h-full'>
+        <div className='bg-gray-100 pt-5 pb-5 px-10 rounded-lg h-full'>
             <div className='flex flex-row gap-5 items-center'>
                 <Icon path={mdiFormatQuoteOpenOutline} className='fill-yellow-600' color='' size='7rem' />
                 <div className='flex flex-col'>
