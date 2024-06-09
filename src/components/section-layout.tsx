@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react"
+import { twMerge } from "tailwind-merge";
 
 interface SectionProps extends SectionHeaderProps {
   details?: string
@@ -18,9 +19,16 @@ const SectionLayout = (props: PropsWithChildren<SectionProps>) => {
   )
 }
 
-export const CenteredSection = (props: PropsWithChildren) => {
+interface CenteredSectionProps {
+  className?: string
+}
+export const CenteredSection = (props: PropsWithChildren<CenteredSectionProps>) => {
+  const classes = twMerge(`
+    container mx-auto max-w-6xl py-20 px-5 sm:px-10 md:px-16 lg:px-20
+    ${props.className ?? ""}
+  `);
   return (
-    <div className="container mx-auto max-w-6xl py-20 px-5 sm:px-10 md:px-16 lg:px-20">
+    <div className={classes}>
       {props.children}
     </div>
   )
