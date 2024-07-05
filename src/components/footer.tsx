@@ -2,13 +2,29 @@ import React, { PropsWithChildren } from 'react'
 import { mdiMapMarker, mdiEmailOutline, mdiPhone } from '@mdi/js';
 import Icon from '@mdi/react';
 import { CenteredSection } from './section-layout';
+import logo from '../images/logo.png'
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className='bg-slate-800 text-gray-200'>
+    <footer className='relative bg-slate-800 text-gray-200 z-0'>
       <div className='h-[1px] bg-slate-600'></div>
       <ContactUs/>
       <div className='h-[1px] bg-slate-600'></div>
+      <Copyright />
+
+      <motion.img 
+        src={logo}
+        className='absolute max-w-[150px] z-10 bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-75'
+        initial={{ x: "100%" }}
+        whileInView={{ x: 0 }}
+        viewport={{ once: true }}
+        transition={{
+          ease: "easeInOut",
+          duration: 2.5,
+          delay: 0.1
+        }}
+      />
     </footer>
   )
 }
@@ -20,15 +36,15 @@ const ContactUs = () => {
         <div className='flex flex-col lg:container lg:flex-row lg:divide-x lg:divide-slate-700'>
           <FooterTile icon={mdiMapMarker}>
             <div>
-              54B, Tailstoi Town 5238 MT
+              La Bédorais
               <br />
-              La city, IA 522364
+              St Remy Du Plain, 35123
             </div>
           </FooterTile>
 
           <FooterTile icon={mdiEmailOutline}>
             <div>
-              Email us:
+              Email:
               <br />
               <a className='font-bold' href='mailto:contact@mpc.com'>contact@mpc.com</a>
             </div>
@@ -36,9 +52,9 @@ const ContactUs = () => {
 
           <FooterTile icon={mdiPhone}>
             <div>
-              Call us at:
+              Nº Téléphone:
               <br />
-              <a className='font-bold' href='tel:80012345678'>+1 800 123 45678</a>
+              <a className='font-bold' href='tel:0712345678'>07 12 34 56 78</a>
             </div>
           </FooterTile>
         </div>
@@ -60,6 +76,16 @@ const FooterTile = (props: PropsWithChildren<FooterTileProps>) => {
       </div>
       { props.children }
     </div>
+  )
+}
+
+const Copyright = () => {
+  return (
+    <CenteredSection className='py-4'>
+      <div className='flex justify-center'>
+        <span className='text-slate-400'>© Copyright Mon Petit Couvreur 2024. All right reserved.</span>
+      </div>
+  </CenteredSection>
   )
 }
 
