@@ -1,37 +1,23 @@
 import Icon from '@mdi/react';
 import { mdiFormatQuoteOpenOutline } from '@mdi/js';
 import React, { useRef } from "react"
-import SectionLayout, { CenteredSection, SectionHeader} from './section-layout';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { title } from 'process';
+import { CenteredSection, SectionHeader} from './section-layout';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const TestimonySection = () => {
     const ref = useRef(null)
-    const settings = {
-        className: "w-full lg:w-8/12",
-        dots: false,
-        infinite: true,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        responsive: [
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                infinite: true,
-                dots: false
-              }
-            },
-          ]
-      };
 
-
+    const responsive = {
+        large: {
+            breakpoint: { max: 3000, min: 600 },
+            items: 2,
+        },
+        small: {
+            breakpoint: { max: 600, min: 0 },
+            items: 1,
+        }
+    }
     
   return (
     <section className="bg-slate-800 text-gray-100">
@@ -40,16 +26,26 @@ const TestimonySection = () => {
                 <div className='lg:basis-4/12'>
                     <SectionHeader title="What they're saying about us" subtitle='– TESTIMONIALS'>
                         <div className='flex flex-row gap-8 lg:pt-5'>
-                            <Button text='&larr;' onClick={ () => ref.current?.slickPrev()  } />
-                            <Button text='&rarr;' onClick={ () => ref.current?.slickNext() } />
+                            <Button text='&larr;' onClick={ () => ref.current?.previous()  } />
+                            <Button text='&rarr;' onClick={ () => ref.current?.next() } />
                         </div>
                     </SectionHeader>
                 </div>
-                <Slider ref={ ref } {...settings}>
+                <Carousel ref={ ref }
+                 className="w-full lg:w-8/12"
+                 responsive={responsive}
+                 partialVisible={true}
+                 infinite={true}
+                 autoPlay={true}
+                 autoPlaySpeed={3000}
+                 arrows={false}
+                 containerClass="carousel-container"
+                 itemClass="carousel-item"
+                >
                 {
                     testimonies.map((t, idx) => <TestimonyTile key={idx} {...t} />)
                 }
-                </Slider>
+                </Carousel>
             </div>
          </CenteredSection>       
     </section>
@@ -95,7 +91,7 @@ interface Testimony {
 const TestimonyTile = (props: Testimony) => {
     return (
         // this works in conjuction with the globall.css where we style the react-slick slider's div
-        <div className='bg-gray-100 pt-5 pb-5 px-10 rounded-lg h-full'>
+        <div className='bg-gray-100 pt-5 pb-5 px-10 me-4 rounded-lg h-full lg:me-6 lg:ms-0'>
             <div className='flex flex-row gap-5 items-center'>
                 <Icon path={mdiFormatQuoteOpenOutline} className='fill-yellow-600' color='' size='7rem' />
                 <div className='flex flex-col'>
