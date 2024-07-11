@@ -10,7 +10,7 @@ import { title } from 'process';
 const TestimonySection = () => {
     const ref = useRef(null)
     const settings = {
-        className: "w-8/12",
+        className: "w-full lg:w-8/12",
         dots: false,
         infinite: true,
         slidesToShow: 2,
@@ -20,7 +20,7 @@ const TestimonySection = () => {
         autoplaySpeed: 3000,
         responsive: [
             {
-              breakpoint: 768,
+              breakpoint: 600,
               settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -36,11 +36,11 @@ const TestimonySection = () => {
   return (
     <section className="bg-slate-800 text-gray-100">
          <CenteredSection>
-            <div className='flex flex-row align-top'>
-                <div className='basis-4/12'>
+         <div className='flex flex-col items-start gap-4 lg:flex-row lg:align-top lg:gap-2'>
+                <div className='lg:basis-4/12'>
                     <SectionHeader title="What they're saying about us" subtitle='– TESTIMONIALS'>
-                        <div className='flex flex-row gap-8 pt-5'>
-                            <Button text='&larr;' onClick={ () => { console.log("test"); ref.current?.slickPrev() }  } />
+                        <div className='flex flex-row gap-8 lg:pt-5'>
+                            <Button text='&larr;' onClick={ () => ref.current?.slickPrev()  } />
                             <Button text='&rarr;' onClick={ () => ref.current?.slickNext() } />
                         </div>
                     </SectionHeader>
