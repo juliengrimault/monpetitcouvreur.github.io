@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmon_petit_couvreur=self.webpackChunkmon_petit_couvreur||[]).push([[970],{4748:function(e,t,u){u.r(t);var n=u(6540),l=u(1014);t.default=()=>n.createElement(l.A,null,n.createElement("div",null,"This is the about page"))}}]);
+//# sourceMappingURL=component---src-pages-about-tsx-d617516179336c79c2b7.js.map
