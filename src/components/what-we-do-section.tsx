@@ -91,7 +91,7 @@ const WhatWeDoSection = () => {
   const [selectedSection, setSelectedSection] = useState(sections[0])
   
   return (
-    <section className="relative bg-slate-800 text-gray-100 z-0">
+    <section className="relative bg-slate-800 text-gray-100 z-0 overflow-hidden">
       <SectionLayout
         title='What We Do'
         subtitle='– OUR SERVICES'
@@ -115,7 +115,7 @@ const WhatWeDoSection = () => {
       
       <motion.img 
         src={BgImage}
-        className='absolute max-w-[100%] z-10 bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-15'
+        className='absolute max-w-[100%] -z-10 bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-15'
         initial={{ x: "100%" }}
         whileInView={{ x: 0 }}
         viewport={{ once: true }}

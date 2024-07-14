@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className='relative bg-slate-800 text-gray-200 z-0'>
+    <footer className='relative bg-slate-800 text-gray-200 z-0 overflow-hidden'>
       <div className='h-[1px] bg-slate-600'></div>
       <ContactUs/>
       <div className='h-[1px] bg-slate-600'></div>
@@ -15,7 +15,7 @@ const Footer = () => {
 
       <motion.img 
         src={logo}
-        className='absolute max-w-[150px] z-10 bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-75'
+        className='absolute max-w-[150px] z-10 bottom-0 end-0 mix-blend-lighten object-right-bottom opacity-75 max-h-[100%]'
         initial={{ x: "100%" }}
         whileInView={{ x: 0 }}
         viewport={{ once: true }}

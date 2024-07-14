@@ -44,7 +44,7 @@ const WhyChooseUsSection = () => {
   const y = useParallax(scrollYProgress, 20)
 
   return (
-    <section ref={ref} className="relative bg-slate-200 -z-20">
+    <section ref={ref} className="relative bg-slate-200 -z-20 overflow-hidden">
       <div className='container mx-auto flex flex-row max-w-6xl'>
         <div className='w-0 lg:w-2/5'></div>
         <SectionLayout
